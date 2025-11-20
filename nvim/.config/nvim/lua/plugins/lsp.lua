@@ -12,6 +12,16 @@ return {
 	config = function()
 		-- Server configs go here:
 		local servers = {
+			roslyn = {
+				pkg = "roslyn",
+				filetypes = { "c#" },
+				root_markers = { "Assets", "ProjectSettings", "Packages", "*.csproj", ".git" },
+				settings = {
+					["csharp|code_lens"] = {
+						dotnet_enable_references_code_lens = true,
+					},
+				},
+			},
 			clangd = {
 				pkg = "clangd",
 				filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "h", "hpp" },
