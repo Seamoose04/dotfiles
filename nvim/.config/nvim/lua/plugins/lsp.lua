@@ -16,6 +16,7 @@ return {
 				pkg = "roslyn",
 				filetypes = { "cs" },
 				root_markers = { "Assets", "ProjectSettings", "Packages", "*.csproj", ".git" },
+				flags = { "--logLevel", "none", "--extensionLogDirectory", vim.fn.stdpath("state") .. "/roslyn", "--stdio" },
 				settings = {
 					["csharp|code_lens"] = {
 						dotnet_enable_references_code_lens = true,
@@ -26,13 +27,13 @@ return {
 				pkg = "clangd",
 				filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "h", "hpp" },
 				root_markers = { "compile_commands.json", ".git" },
-				cmd = { "clangd", "--background-index", "--clang-tidy" },
+				flags = { "--background-index", "--clang-tidy" },
 			},
 			cmake = {
 				pkg = "neocmakelsp",
 				filetypes = { "cmake" },
 				root_markers = { "CMakeLists.txt", ".git" },
-				cmd = { "neocmakelsp", "--stdio" },
+				flags = { "--stdio" },
 			},
 			pyright = {
 				pkg = "pyright",
@@ -73,9 +74,17 @@ return {
 							return
 						end
 
+						local cmd = { bin }
+						if cfg.flags then
+							for _, v in ipairs(cfg.flags) do
+								table.insert(cmd, v)
+							end
+						end
+
 						vim.lsp.start(vim.tbl_extend("force", cfg, {
 							name = name,
-							cmd = cfg.cmd or { bin },
+							cmd = cmd,
+							settings = cfg.settings,
 							root_dir = vim.fs.root(0, cfg.root_markers),
 						}))
 
