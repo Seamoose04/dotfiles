@@ -14,7 +14,7 @@ return {
 		local servers = {
 			roslyn = {
 				pkg = "roslyn",
-				filetypes = { "c#" },
+				filetypes = { "cs" },
 				root_markers = { "Assets", "ProjectSettings", "Packages", "*.csproj", ".git" },
 				settings = {
 					["csharp|code_lens"] = {
