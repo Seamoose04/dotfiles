@@ -31,7 +31,8 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 		local has_issue = false
 		for _, d in ipairs(diags) do
 			if d.severity == vim.diagnostic.severity.ERROR
-				or d.severity == vim.diagnostic.severity.WARN then
+				or d.severity == vim.diagnostic.severity.WARN
+				or d.severity == vim.diagnostic.severity.HINT then
 				has_issue = true
 				break
 			end
