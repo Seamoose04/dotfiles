@@ -13,7 +13,7 @@ vim.opt["tabstop"] = 4
 vim.opt["shiftwidth"] = 4
 
 -- Keep cursor centered
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 12
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true }) -- Half-page down + recenter
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true }) -- Half-page up + recenter
 
