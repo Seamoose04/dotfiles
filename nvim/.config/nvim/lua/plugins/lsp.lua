@@ -12,6 +12,12 @@ return {
 	config = function()
 		-- Server configs go here:
 		local servers = {
+			yamlls = {
+				pkg = "yaml-language-server",
+				filetypes = { "yaml", "yml" },
+				root_markers = { ".git" },
+				flags = { "--stdio" },
+			},
 			roslyn = {
 				pkg = "roslyn",
 				filetypes = { "cs" },
