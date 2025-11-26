@@ -50,6 +50,7 @@ return {
 				pkg = "typescript-language-server",
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 				root_markers = { "package.json", "tsconfig.json", ".git" },
+				flags = { "--stdio" },
 			},
 			lua_ls = {
 				pkg = "lua-language-server",
