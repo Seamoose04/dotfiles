@@ -4,14 +4,19 @@ return {
 	priority = 100,
 	dependencies = { "williamboman/mason.nvim" },
 	keys = {
-		{ "<leader>ld", vim.lsp.buf.definition, desc = "Go to definition" },
-		{ "<leader>lk", vim.lsp.buf.hover, desc = "Show hover info" },
-		{ "<leader>lr", vim.lsp.buf.rename, desc = "Rename symbol" },
+		{ "<leader>ld", vim.lsp.buf.definition,  desc = "Go to definition" },
+		{ "<leader>lk", vim.lsp.buf.hover,       desc = "Show hover info" },
+		{ "<leader>lr", vim.lsp.buf.rename,      desc = "Rename symbol" },
 		{ "<leader>la", vim.lsp.buf.code_action, desc = "Code action" },
 	},
 	config = function()
 		-- Server configs go here:
 		local servers = {
+			ca65 = {
+				filetypes = { "s", "asm" },
+				root_markers = { ".git" },
+				cmd_override = { "ca65-lsp" },
+			},
 			yamlls = {
 				pkg = "yaml-language-server",
 				filetypes = { "yaml", "yml" },
@@ -39,7 +44,7 @@ return {
 				pkg = "neocmakelsp",
 				filetypes = { "cmake" },
 				root_markers = { "CMakeLists.txt", ".git" },
-				flags = { "--stdio" },
+				flags = { "stdio" },
 			},
 			pyright = {
 				pkg = "pyright",
