@@ -13,8 +13,8 @@ return {
 		-- Server configs go here:
 		local servers = {
 			ca65 = {
-				filetypes = { "s", "asm" },
-				root_markers = { ".git" },
+				filetypes = { "s", "asm", "inc" },
+				root_markers = { ".git", "Makefile" },
 				cmd_override = { "ca65-lsp" },
 			},
 			yamlls = {
