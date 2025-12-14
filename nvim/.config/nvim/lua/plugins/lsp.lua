@@ -71,22 +71,25 @@ return {
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = cfg.filetypes,
 				callback = function()
-					local mason = require("mason")
 					local registry = require("mason-registry")
 					local mason_path = require("mason.settings").current.install_root_dir
 
 					local function start_lsp()
-						local bin = mason_path .. "/bin/" .. cfg.pkg
-						if vim.fn.executable(bin) == 0 then
-							vim.notify(
-								"LSP binary for " .. cfg.pkg .. " not found at " .. bin ..
-								"\nTry running :Mason and installing it manually.",
-								vim.log.levels.WARN
-							)
-							return
+						local cmd
+						if cfg.cmd_override ~= nil then
+							cmd = cfg.cmd_override
+						else
+							local bin = mason_path .. "/bin/" .. cfg.pkg
+							if vim.fn.executable(bin) == 0 then
+								vim.notify(
+									"LSP binary for " .. cfg.pkg .. " not found at " .. bin ..
+									"\nTry running :Mason and installing it manually.",
+									vim.log.levels.WARN
+								)
+								return
+							end
+							cmd = { bin }
 						end
-
-						local cmd = { bin }
 						if cfg.flags then
 							for _, v in ipairs(cfg.flags) do
 								table.insert(cmd, v)
@@ -100,12 +103,12 @@ return {
 							root_dir = vim.fs.root(0, cfg.root_markers),
 						}))
 
-						vim.notify("Started LSP: " .. cfg.pkg, vim.log.levels.INFO)
+						vim.notify("Started LSP: " .. name, vim.log.levels.INFO)
 					end
 
 					-- Get or install package
-					local pkg = registry.get_package(cfg.pkg)
-					if not pkg:is_installed() then
+					local pkg = cfg.cmd_override or registry.get_package(cfg.pkg)
+					if cfg.cmd_override == nil and not pkg:is_installed() then
 						vim.notify("Installing missing LSP: " .. cfg.pkg .. " ...", vim.log.levels.INFO)
 						pkg:install()
 
