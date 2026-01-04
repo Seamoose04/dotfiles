@@ -13,9 +13,14 @@ return {
 		-- Server configs go here:
 		local servers = {
 			ca65 = {
-				filetypes = { "s", "asm", "inc" },
+				filetypes = { "s", "asm" },
 				root_markers = { ".git", "Makefile" },
 				cmd_override = { "ca65-lsp" },
+				settings = {
+					ca65 = {
+						includePaths = { "include" }
+					}
+				},
 			},
 			yamlls = {
 				pkg = "yaml-language-server",
