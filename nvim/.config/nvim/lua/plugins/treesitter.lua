@@ -7,7 +7,6 @@ return {
 			-- parsers you want installed
 			ensure_installed = {},
 			auto_install = false,
-
 			highlight = {
 				enable = true, -- better syntax highlighting
 			},
