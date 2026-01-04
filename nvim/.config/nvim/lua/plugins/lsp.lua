@@ -12,6 +12,11 @@ return {
 	config = function()
 		-- Server configs go here:
 		local servers = {
+			nil_ls = {
+				filetypes = { "nix" },
+				root_markers = { ".git" },
+				cmd_override = { "nil" },
+			},
 			ca65 = {
 				filetypes = { "s", "asm" },
 				root_markers = { ".git", "Makefile" },
