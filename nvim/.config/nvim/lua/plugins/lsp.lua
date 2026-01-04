@@ -101,11 +101,18 @@ return {
 							end
 						end
 
+						local capabilities = vim.lsp.protocol.make_client_capabilities()
+						local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+						if ok then
+							capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+						end
+
 						vim.lsp.start(vim.tbl_extend("force", cfg, {
 							name = name,
 							cmd = cmd,
 							settings = cfg.settings,
 							root_dir = vim.fs.root(0, cfg.root_markers),
+							capabilities = capabilities,
 						}))
 
 						vim.notify("Started LSP: " .. name, vim.log.levels.INFO)
