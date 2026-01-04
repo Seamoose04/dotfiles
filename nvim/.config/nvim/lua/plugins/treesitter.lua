@@ -3,11 +3,11 @@ return {
 	build = ":TSUpdate",
 	event = { "BufReadPost", "BufNewFile" },
 	config = function()
-		require("nvim-treesitter.configs").setup({
+		require("nvim-treesitter").setup({
 			-- parsers you want installed
-			ensure_installed = {
-				"lua", "python", "javascript", "typescript", "c", "cpp", "bash", "json", "yaml", "html", "css"
-			},
+			ensure_installed = {},
+			auto_install = false,
+
 			highlight = {
 				enable = true, -- better syntax highlighting
 			},
