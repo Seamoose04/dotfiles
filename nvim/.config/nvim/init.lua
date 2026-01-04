@@ -2,6 +2,24 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Use system clipboard
+vim.opt.clipboard = "unnamedplus"
+
+-- Fix SSH clipboard
+if os.getenv("SSH_CONNECTION") then
+	vim.g.clipboard = {
+		name = 'OSC 52',
+		copy = {
+			['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+			['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+		},
+		paste = {
+			['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+			['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+		},
+	}
+end
+
 -- Bootstrap lazy.nvim
 require("config.lazy")
 
@@ -23,9 +41,6 @@ vim.keymap.set("n", "<C-k>", "ddkP==", { noremap = true, silent = true }) -- Lin
 vim.keymap.set("n", "<C-j>", "ddp==", { noremap = true, silent = true }) -- Line Down
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>'[V']=gv", { noremap = true, silent = true }) -- Selection Up
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>'[V']=gv", { noremap = true, silent = true }) -- Selection Down
-
--- Use system clipboard
-vim.opt.clipboard = "unnamedplus"
 
 -- Colorscheme
 vim.cmd.colorscheme("tokyonight")
