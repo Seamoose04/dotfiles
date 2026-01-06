@@ -13,9 +13,14 @@ return {
 		-- Server configs go here:
 		local servers = {
 			ca65 = {
-				filetypes = { "s", "asm", "inc" },
+				filetypes = { "s", "asm" },
 				root_markers = { ".git", "Makefile" },
 				cmd_override = { "ca65-lsp" },
+				settings = {
+					ca65 = {
+						includePaths = { "include" }
+					}
+				},
 			},
 			yamlls = {
 				pkg = "yaml-language-server",
@@ -71,26 +76,35 @@ return {
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = cfg.filetypes,
 				callback = function()
-					local mason = require("mason")
 					local registry = require("mason-registry")
 					local mason_path = require("mason.settings").current.install_root_dir
 
 					local function start_lsp()
-						local bin = mason_path .. "/bin/" .. cfg.pkg
-						if vim.fn.executable(bin) == 0 then
-							vim.notify(
-								"LSP binary for " .. cfg.pkg .. " not found at " .. bin ..
-								"\nTry running :Mason and installing it manually.",
-								vim.log.levels.WARN
-							)
-							return
+						local cmd
+						if cfg.cmd_override ~= nil then
+							cmd = cfg.cmd_override
+						else
+							local bin = mason_path .. "/bin/" .. cfg.pkg
+							if vim.fn.executable(bin) == 0 then
+								vim.notify(
+									"LSP binary for " .. cfg.pkg .. " not found at " .. bin ..
+									"\nTry running :Mason and installing it manually.",
+									vim.log.levels.WARN
+								)
+								return
+							end
+							cmd = { bin }
 						end
-
-						local cmd = { bin }
 						if cfg.flags then
 							for _, v in ipairs(cfg.flags) do
 								table.insert(cmd, v)
 							end
+						end
+
+						local capabilities = vim.lsp.protocol.make_client_capabilities()
+						local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+						if ok then
+							capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 						end
 
 						vim.lsp.start(vim.tbl_extend("force", cfg, {
@@ -98,14 +112,15 @@ return {
 							cmd = cmd,
 							settings = cfg.settings,
 							root_dir = vim.fs.root(0, cfg.root_markers),
+							capabilities = capabilities,
 						}))
 
-						vim.notify("Started LSP: " .. cfg.pkg, vim.log.levels.INFO)
+						vim.notify("Started LSP: " .. name, vim.log.levels.INFO)
 					end
 
 					-- Get or install package
-					local pkg = registry.get_package(cfg.pkg)
-					if not pkg:is_installed() then
+					local pkg = cfg.cmd_override or registry.get_package(cfg.pkg)
+					if cfg.cmd_override == nil and not pkg:is_installed() then
 						vim.notify("Installing missing LSP: " .. cfg.pkg .. " ...", vim.log.levels.INFO)
 						pkg:install()
 
