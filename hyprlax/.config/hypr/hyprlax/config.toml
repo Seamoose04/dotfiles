@@ -1,0 +1,52 @@
+[global]
+fps = 30
+debug = false
+duration = 0.5
+vsync = false
+easing = "cubic" # try snap
+
+[global.parallax]
+input = ["workspace", "cursor:0.3"]
+
+[global.parallax.invert.cursor]
+x = false
+y = false
+
+[global.parallax.max_offset_px]
+x = 300
+y = 150
+
+[global.input.cursor]
+follow_global = true
+sensitivity_x = 1.2
+sensitivity_y = 0.8
+deadzone_px = 5
+ema_alpha = 0.3
+animation_duration = 2.0
+easing = "expo"
+
+[global.render]
+accumulate = true
+trail_strength = 0.12
+
+[[global.layers]]
+path = "blackhole/0.png"
+shift_multiplier = 0
+scale = 1.0
+opacity = 1.0
+blur = 5.0
+
+[[global.layers]]
+path = "blackhole/1.png"
+shift_multiplier = 0.1
+scale = 1.1
+opacity = 0.8
+blur = 4.5
+
+[[global.layers]]
+path = "blackhole/2.png"
+shift_multiplier = 0.2
+scale = 1.2
+opacity = 0.8
+blur = 4.0
+

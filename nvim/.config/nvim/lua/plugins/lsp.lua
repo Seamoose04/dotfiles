@@ -12,6 +12,12 @@ return {
 	config = function()
 		-- Server configs go here:
 		local servers = {
+			ppl = {
+				filetypes = { "txt", "hpprgm" },
+				root_markers = { ".git" },
+				cmd_override = { "python3", "/home/seamus/src/hpprime-lsp/src/server.py" },
+				settings = {},
+			},
 			ca65 = {
 				filetypes = { "s", "asm" },
 				root_markers = { ".git", "Makefile" },
