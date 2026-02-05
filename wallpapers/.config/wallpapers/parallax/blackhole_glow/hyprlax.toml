@@ -1,0 +1,76 @@
+[global]
+fps = 60
+debug = false
+duration = 0.5
+vsync = false
+easing = "cubic" # try snap
+
+[global.parallax]
+input = ["workspace", "cursor:0.3"]
+
+[global.parallax.max_offset_px]
+x = 300
+y = 150
+
+[global.input.cursor]
+follow_global = true
+sensitivity_x = 1.0
+sensitivity_y = 1.0
+deadzone_px = 5
+ema_alpha = 0.3
+animation_duration = 2.0
+easing = "expo"
+
+[global.render]
+accumulate = true
+trail_strength = 0.12
+
+[[global.layers]]
+path = "/home/seamus/.config/wallpapers/parallax/blackhole_glow/layers/black.png"
+shift_multiplier = 0
+scale = 1.0
+opacity = 1.0
+blur = 0.0
+
+[[global.layers]]
+path = "/home/seamus/.config/wallpapers/parallax/blackhole_glow/layers/5.png"
+shift_multiplier = 0.05
+scale = 1.0
+opacity = 0.8
+blur = 0.0
+
+[[global.layers]]
+path = "/home/seamus/.config/wallpapers/parallax/blackhole_glow/layers/4.png"
+shift_multiplier = 0.1
+scale = 1.0
+opacity = 0.8
+blur = 0.0
+
+[[global.layers]]
+path = "/home/seamus/.config/wallpapers/parallax/blackhole_glow/layers/3.png"
+shift_multiplier = 0.15
+scale = 1.0
+opacity = 0.8
+blur = 0.0
+
+[[global.layers]]
+path = "/home/seamus/.config/wallpapers/parallax/blackhole_glow/layers/2.png"
+shift_multiplier = 0.2
+scale = 1.0
+opacity = 0.8
+blur = 0.0
+
+[[global.layers]]
+path = "/home/seamus/.config/wallpapers/parallax/blackhole_glow/layers/1.png"
+shift_multiplier = 0.25
+scale = 1.0
+opacity = 0.8
+blur = 0.0
+
+[[global.layers]]
+path = "/home/seamus/.config/wallpapers/parallax/blackhole_glow/layers/0.png"
+shift_multiplier = 0.3
+scale = 1.0
+opacity = 0.8
+blur = 0.0
+
