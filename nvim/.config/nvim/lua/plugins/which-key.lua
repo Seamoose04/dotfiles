@@ -16,6 +16,7 @@ return {
 			{ "<leader>t", group = "Telescope" },
 			{ "<leader>c", group = "Code" },
 			{ "<leader>d", group = "Debug" },
+			{ "<leader>u", desc = "Toggle Undotree" },
 		})
 	end,
 }
