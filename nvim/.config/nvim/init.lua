@@ -31,6 +31,9 @@ vim.opt["tabstop"] = 4
 vim.opt["shiftwidth"] = 4
 vim.opt.wrap = false
 
+-- Safe delete
+vim.keymap.set({'n', 'v'}, '<leader>d', '"_d', { noremap = true, silent = true })
+
 -- Keep cursor centered
 vim.opt.scrolloff = 12
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true }) -- Half-page down + recenter
