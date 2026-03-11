@@ -2,9 +2,14 @@ if status is-interactive
 	# Editor
 	set -x EDITOR nvim
 	set -x VISUAL nvim
+	set -gx PATH /opt/cuda/bin $PATH
+	set -gx LD_LIBRARY_PATH /opt/cuda/lib64 $LD_LIBRARY_PATH
 
 	# Starship
 	starship init fish | source
+
+	# git ssh setup
+	eval (ssh-agent -c)
 
 	# fzf
 	fzf --fish | source
