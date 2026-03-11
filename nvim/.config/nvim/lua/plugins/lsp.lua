@@ -3,6 +3,7 @@ return {
     lazy = false,
     dependencies = {
         "williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
     },
     keys = {
         { "<leader>ld", vim.lsp.buf.definition,  desc = "Go to definition" },
@@ -11,6 +12,15 @@ return {
         { "<leader>la", vim.lsp.buf.code_action, desc = "Code action" },
     },
     config = function()
+		require("mason").setup()
+		require("mason-lspconfig").setup({
+			ensure_installed = {
+				"basedpyright",
+				"clangd",
+				"lua_ls",
+			},
+			automatic_installation = true,
+		})
         -- Manually load lsp/ configs
         local lsp_dir = vim.fn.stdpath("config") .. "/lsp"
         for _, file in ipairs(vim.fn.glob(lsp_dir .. "/*.lua", false, true)) do
