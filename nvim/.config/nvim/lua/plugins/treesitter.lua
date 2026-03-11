@@ -1,13 +1,10 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
 	build = ":TSUpdate",
-	event = { "BufReadPost", "BufNewFile" },
+	lazy = false,
 	config = function()
 		require("nvim-treesitter").setup({
-			-- parsers you want installed
-			ensure_installed = {
-				"lua", "python", "javascript", "typescript", "c", "cpp", "bash", "json", "yaml", "html", "css", "asm"
-			},
 			highlight = {
 				enable = true, -- better syntax highlighting
 			},
@@ -23,6 +20,9 @@ return {
 					node_decremental = "<BS>",     -- shrink
 				},
 			},
+		})
+		require("nvim-treesitter").install({
+			"lua", "python", "javascript", "typescript", "c", "cpp", "bash", "json", "yaml", "html", "css", "asm"
 		})
 	end,
 }
