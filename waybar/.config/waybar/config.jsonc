@@ -1,25 +1,52 @@
 {
-  "position": "top",
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["hyprland/window"],
-  "modules-right": ["network", "pulseaudio", "tray", "clock"],
-  "clock": {
-    "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-  },
-  "network": {
-    "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",
-    "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
-    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
-  },
-  "pulseaudio": {
-      "format": "{icon}  {volume}%",
-      "format-muted": "",
-      "format-icons": {
-          "default": ["", "", " "]
-      },
-      "on-click": "pavucontrol"
-  }
+	"position": "top",
+	"modules-left": ["hyprland/workspaces"],
+	"modules-center": ["hyprland/window"],
+	"modules-right": ["network", "bluetooth", "pulseaudio", "tray", "clock", "custom/notification"],
+	"clock": {
+		"format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+	},
+	"network": {
+		"format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",
+		"format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
+		"format-linked": "{ifname} (No IP) ",
+		"format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
+		"tooltip-format-wifi": "Signal Strength: {signalStrength}%"
+	},
+	"bluetooth": {
+		"format": " {status}",
+		"format-disable": " Disabled",
+		"format-connected": " {device_alias}",
+		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+		"tooltip-format": "{controller_alias}\t{controller_address}",
+		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+		"on-click": "hyprctl dispatch exec '[float; size 800 600; center] kitty --title bluetui-float bluetui'"
+	},
+	"pulseaudio": {
+		"format": "{icon}  {volume}%",
+		"format-muted": "",
+		"format-icons": {
+			"default": ["", "", " "]
+		},
+		"on-click": "pavucontrol"
+	},
+	"custom/notification": {
+		"tooltip": false,
+		"format": " {icon}  ",
+		"format-icons": {
+			"notification": "󰂚",
+        	"none": "󰂜",
+        	"dnd-notification": "󰂛",
+        	"dnd-none": "󰂛"
+		},
+		"return-type": "json",
+		"exec-if": "which swaync-client",
+		"exec": "swaync-client -swb",
+		"on-click": "swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"escape": true
+	}
 }
