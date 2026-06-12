@@ -65,6 +65,7 @@ button:hover {
 #wireplumber,
 #tray,
 #network,
+#bluetooth
 #mode,
 #scratchpad {
   margin-top: 2px;
@@ -95,6 +96,15 @@ button:hover {
     border-bottom: 2px solid @yellow;
 }
 
+#bluetooth {
+	color: @white;
+	border-bottom: 2px solid @white;
+}
+
+#tray {
+	border-bottom: 2px solid @sky;
+}
+
 #idle_inhibitor {
     margin-right: 12px;
     color: #7cb342;
@@ -104,7 +114,7 @@ button:hover {
     color: @red;
 }
 
-#battery {
+#custom-battery {
     color: @green;
     border-bottom: 2px solid @green;
 }
