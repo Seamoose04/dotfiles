@@ -18,6 +18,7 @@ return {
 				"basedpyright",
 				"clangd",
 				"lua_ls",
+				"ts_ls",
 			},
 			automatic_installation = true,
 		})
@@ -37,6 +38,7 @@ return {
             "lua_ls",
             "ca65",
             "ppl",
+			"ts_ls"
         })
     end,
 }
