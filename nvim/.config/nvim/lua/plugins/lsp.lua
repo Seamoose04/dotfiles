@@ -38,7 +38,11 @@ return {
             "lua_ls",
             "ca65",
             "ppl",
+<<<<<<< Updated upstream
 			"ts_ls"
+=======
+			"ts_ls",
+>>>>>>> Stashed changes
         })
     end,
 }
