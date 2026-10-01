@@ -22,8 +22,8 @@ return {
         conform.format({ async = true, lsp_fallback = true, range = true })
       else
         -- Use treesitter to detect current function/block range
-        local ts_utils = require("nvim-treesitter.ts_utils")
-        local node = ts_utils.get_node_at_cursor()
+        local ok, node = pcall(vim.treesitter.get_node, nil, vim.api.nvim_win_get_cursor(0))
+		if not ok then node = nil end
         while node and node:type() ~= "function_declaration"
           and node:type() ~= "function_definition"
           and node:type() ~= "method_declaration"

@@ -27,6 +27,10 @@ if status is-interactive
 	alias icat="kitten icat"
 	alias refish="source ~/.config/fish/config.fish"
 
+	# Android
+	set -gx ANDROID_SDK_ROOT $HOME/src/Android/sdk
+	set -gx ANDROID_HOME $HOME/src/Android/sdk
+
 	# Kitty ssh fix
 	if test "$TERM" = "xterm-kitty"
 		alias ssh="TERM=xterm-256color command ssh"

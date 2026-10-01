@@ -18,6 +18,8 @@ return {
 				"basedpyright",
 				"clangd",
 				"lua_ls",
+				"ts_ls",
+				"kotlin_lsp",
 			},
 			automatic_installation = true,
 		})
@@ -37,6 +39,8 @@ return {
             "lua_ls",
             "ca65",
             "ppl",
+			"ts_ls",
+			"kotlin_lsp",
         })
     end,
 }
