@@ -22,7 +22,7 @@ return {
 			},
 		})
 		require("nvim-treesitter").install({
-			"lua", "python", "javascript", "typescript", "c", "cpp", "bash", "json", "yaml", "html", "css", "asm"
+			"lua", "python", "javascript", "typescript", "c", "cpp", "bash", "json", "yaml", "html", "css", "asm", "kotlin",
 		})
 	end,
 }

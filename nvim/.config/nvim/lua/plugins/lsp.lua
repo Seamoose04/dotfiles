@@ -19,6 +19,7 @@ return {
 				"clangd",
 				"lua_ls",
 				"ts_ls",
+				"kotlin_lsp",
 			},
 			automatic_installation = true,
 		})
@@ -39,6 +40,7 @@ return {
             "ca65",
             "ppl",
 			"ts_ls",
+			"kotlin_lsp",
         })
     end,
 }
