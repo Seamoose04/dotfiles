@@ -18,6 +18,10 @@ if status is-interactive
 	alias ls="ls --color=auto"
 	alias grep="grep --color=auto"
 
+	# 6502 aliases
+	alias eeprom 'picocom -b 115200 --send-cmd "lrzsz-sx --xmodem"'
+	alias 6502 'picocom -b 19200 --flow hardware'
+
 	# Other aliases
 	alias logout="loginctl terminate-user $USER"
 	alias icat="kitten icat"
